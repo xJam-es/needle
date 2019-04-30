@@ -17,6 +17,8 @@ using System.Net;
 using needle.windows;
 using needle.classes;
 using Newtonsoft.Json;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace needle
 {
@@ -26,50 +28,57 @@ namespace needle
     public partial class MainWindow : Window
     {
         internal static globalClass _gcl = new globalClass();
-        internal static LogWindow _log = new LogWindow();
+        public LogWindow _log = new LogWindow();
+        internal static OptionsWindow _options = new OptionsWindow();
 
         public MainWindow()
         {
             InitializeComponent();
-            getAppVersion();
-            checkforUpdates().Wait();
+
+            // load Settings
+            _options._mainWindow = this;
+            _options._log = _log;
+            _options.loadOptions();
+
+            // Auto Update
+            _log.addtolog("App Version: " + _gcl.appVersion);
+            this.Title = _gcl.appName;
+            var updateTask = new Task(checkforUpdates);
+            updateTask.Start();
         }
 
-        private void getAppVersion ()
+        public void checkforUpdates()
         {
-            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
-            FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
-            _gcl.appversion = fvi.FileMajorPart + "." + fvi.FileMinorPart;
-            _log.addtolog("App Version: " + _gcl.appversion);
-        }
-
-        public static async Task checkforUpdates()
-        {
-            
-            _log.addtolog("Checking for Updates");
-            using (WebClient client = new WebClient())
+            if (_options.autoUpdateChecked)
             {
-                try
+                _log.addtolog("Checking for Updates");
+                using (WebClient client = new WebClient())
                 {
-                    client.Headers.Add("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; " +
-                                      "Windows NT 5.2; .NET CLR 1.0.3705;)");
-                    var json = client.DownloadString(_gcl.github_api);
-                    dynamic jsRes = JsonConvert.DeserializeObject(json);
-                    if (jsRes.tag_name.Value == _gcl.appversion) _log.addtolog("Application is up to date");
-                    else
+                    try
                     {
-                        _log.addtolog(_gcl.LOG_TYPE_HIGHLIGHT,"New version available: " + jsRes.tag_name.Value);
+                        client.Headers.Add("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; " +
+                                          "Windows NT 5.2; .NET CLR 1.0.3705;)");
+                        var json = client.DownloadString(_gcl.github_api);
+                        dynamic jsRes = JsonConvert.DeserializeObject(json);
+                        if (jsRes.tag_name.Value == _gcl.appVersion) _log.addtolog("Application is up to date");
+                        else
+                        {
+                            _log.addtolog(_gcl.LOG_TYPE_HIGHLIGHT, "New version available: " + jsRes.tag_name.Value);
+                            MessageBoxResult mbr = MessageBox.Show(string.Format("New Version Available: v{0}:\r\n{1}\r\nWould you like to visit the Download page?", jsRes.tag_name.Value, jsRes.tag_name.Value), "New Version Available", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                            if( mbr == MessageBoxResult.Yes ) System.Diagnostics.Process.Start(_gcl.github_latest);
+                        }
+
                     }
-                    
-                } catch(WebException e)
-                {
-                    debugWrite(e.Message);
+                    catch (WebException e)
+                    {
+                        debugWrite(e.Message);
+                    }
                 }
             }
 
         }
 
-        private static void debugWrite(string str)
+        private void debugWrite(string str)
         {
            _log.addtolog(_gcl.LOG_TYPE_ERROR,str);
         }
@@ -103,6 +112,11 @@ namespace needle
             System.Diagnostics.Process.Start(_gcl.github_home);
         }
 
+        private void mnuOptions(object sender, RoutedEventArgs e)
+        {
+            _options.ShowDialog();
+        }
+
         #endregion
 
         #region Main Window Events
@@ -112,7 +126,5 @@ namespace needle
         }
 
         #endregion
-
-
     }
 }

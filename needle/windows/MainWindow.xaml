@@ -29,12 +29,12 @@
                 <Separator />
                 <MenuItem Header="Import Project…" Click="MenuItem_Click">
                     <MenuItem.Icon>
-                        <Image Source="/img/icons/database-import-21.png"/>
+                        <Image Source="/img/icons/import-16.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="Export Project…" Click="MenuItem_Click">
+                <MenuItem Header="Export Project…" IsEnabled="False" Click="MenuItem_Click">
                     <MenuItem.Icon>
-                        <Image Source="/img/icons/database-export-21.png"/>
+                        <Image Source="/img/icons/export-16.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
                 <Separator />
@@ -45,7 +45,11 @@
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="Tools" HorizontalContentAlignment="Stretch">
-                <MenuItem Header="Options…" Click="MenuItem_Click"/>
+                <MenuItem Header="Options…" Click="mnuOptions">
+                    <MenuItem.Icon>
+                        <Image Source="/img/icons/settings-16.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
                 <Separator />
                 <MenuItem Header="View Debug / Log" Click="mnuShowLog">
                     <MenuItem.Icon>
@@ -54,21 +58,20 @@
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="Help" HorizontalContentAlignment="Stretch">
-                <MenuItem Header="Check For Updates" IsCheckable="True" IsChecked="true" Click="MenuItem_Click"/>
                 <MenuItem Header="Wiki" Click="mnuOpenWiki">
                     <MenuItem.Icon>
-                        <Image Source="/img/icons/website-21.png"/>
+                        <Image Source="/img/icons/website-16.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Header="Project Home" Click="mnuOpenProject">
                     <MenuItem.Icon>
-                        <Image Source="/img/icons/website-21.png"/>
+                        <Image Source="/img/icons/website-16.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
                 <Separator />
                 <MenuItem Header="About" Click="MenuItem_Click">
                     <MenuItem.Icon>
-                        <Image Source="/img/icons/question-mark-21.png"/>
+                        <Image Source="/img/icons/about-16.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>

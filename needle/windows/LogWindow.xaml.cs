@@ -51,9 +51,12 @@ namespace needle.windows
             if (logType == _gcl.LOG_TYPE_SUCCESS) { bru = Brushes.DarkGreen; prefix = ";"; }
             if (logType == _gcl.LOG_TYPE_HIGHLIGHT) { bru = Brushes.RoyalBlue; prefix = ":"; }
             // Create Text
-            TextRange tr = new TextRange(logBox.Document.ContentEnd, logBox.Document.ContentEnd);
-            tr.Text = string.Format("{0}[{1}] {2}\r", prefix, DateTime.Now.ToShortTimeString(), message);
-            tr.ApplyPropertyValue(TextElement.ForegroundProperty, bru);
+            this.Dispatcher.Invoke(() =>
+            {
+                TextRange tr = new TextRange(logBox.Document.ContentEnd, logBox.Document.ContentEnd);
+                tr.Text = string.Format("{0}[{1}] {2}\r", prefix, DateTime.Now.ToShortTimeString(), message);
+                tr.ApplyPropertyValue(TextElement.ForegroundProperty, bru);
+            });
         }
 
         public void clearLog()

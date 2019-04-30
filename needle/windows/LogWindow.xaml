@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Debug / Log" Height="250" Width="400" Closing="Window_Closing" WindowStartupLocation="CenterScreen" Initialized="Window_Initialized">
     <Grid>
-        <RichTextBox x:Name="logBox" HorizontalAlignment="Stretch" Margin="0,22,0,0" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Visible">
+        <RichTextBox x:Name="logBox" HorizontalAlignment="Stretch" Margin="0,22,0,0" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Visible" IsReadOnly="True">
             <FlowDocument>
                 <Paragraph>
                     <Run Text="Initialising Application.."/>
