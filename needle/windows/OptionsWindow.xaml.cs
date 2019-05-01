@@ -53,12 +53,6 @@ namespace needle.windows
             catch (Exception ex) { _log.addtolog(_gcl.LOG_TYPE_ERROR, ex.Message); }
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            this.Hide();
-            e.Cancel = true;
-        }
-
         public void save()
         {
             try { _gcl.saveMainOptions(_mainOptions); }
@@ -84,6 +78,17 @@ namespace needle.windows
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            loadOptions();
+            // Data Bindings
+            autoUpdateChecked = autoUpdateChecked;
+            projectsPath = projectsPath;
+            // Goodbye
+            this.Hide();
+            e.Cancel = true;
         }
         #endregion
 
@@ -112,11 +117,6 @@ namespace needle.windows
         #region Button Events
         private void btnCancel(object sender, RoutedEventArgs e)
         {
-            loadOptions();
-            // Data Bindings
-            autoUpdateChecked = autoUpdateChecked;
-            projectsPath = projectsPath;
-            // goodbye
             this.Close();
         }
 

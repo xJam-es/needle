@@ -5,15 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:needle.windows"
         mc:Ignorable="d"
-        Title="Options" Height="300" Width="400" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Closing="Window_Closing">
+        Title="Options" Height="200" Width="400" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Closing="Window_Closing">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="35"/>
         </Grid.RowDefinitions>
-        <Button Content="Save" HorizontalAlignment="Right" Margin="0,10,10,0" Grid.Row="2" VerticalAlignment="Top" Width="75" Cursor="Hand" Click="btnSave"/>
-        <Button Content="Cancel" HorizontalAlignment="Right" Margin="0,10,95,0" Grid.Row="2" VerticalAlignment="Top" Width="75" Cursor="Hand" Click="btnCancel"/>
+        <Button Content="Save" HorizontalAlignment="Right" Height="25" Margin="5" Grid.Row="2" VerticalAlignment="Top" Width="75" Cursor="Hand" Click="btnSave"/>
+        <Button Content="Cancel" HorizontalAlignment="Left" Height="25" Margin="5" Grid.Row="2" VerticalAlignment="Top" Width="75" Cursor="Hand" Click="btnCancel"/>
         <GroupBox Header="Updates" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Stretch" >
             <CheckBox Content="Check Online For Software Updates" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" IsChecked="{Binding
         Path=autoUpdateChecked, Mode=TwoWay}" Cursor="Hand"/>

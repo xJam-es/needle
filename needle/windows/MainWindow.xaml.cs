@@ -30,6 +30,7 @@ namespace needle
         internal static globalClass _gcl = new globalClass();
         public LogWindow _log = new LogWindow();
         internal static OptionsWindow _options = new OptionsWindow();
+        internal static NewProjectWindow _newProject = new NewProjectWindow();
 
         public MainWindow()
         {
@@ -39,6 +40,10 @@ namespace needle
             _options._mainWindow = this;
             _options._log = _log;
             _options.loadOptions();
+
+            // Setup New Project
+            _newProject._mainOptions = _options._mainOptions;
+            _newProject.createNewProject();
 
             // Auto Update
             _log.addtolog("App Version: " + _gcl.appVersion);
@@ -83,6 +88,14 @@ namespace needle
            _log.addtolog(_gcl.LOG_TYPE_ERROR,str);
         }
 
+        #region Main Window Events
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            System.Windows.Application.Current.Shutdown(); // close all windows
+        }
+
+        #endregion
+
         #region Menu Click Events
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
@@ -117,14 +130,12 @@ namespace needle
             _options.ShowDialog();
         }
 
-        #endregion
-
-        #region Main Window Events
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void mnuNewProject(object sender, RoutedEventArgs e)
         {
-            System.Windows.Application.Current.Shutdown(); // close all windows
+            _newProject.ShowDialog();
         }
 
         #endregion
+
     }
 }

@@ -16,7 +16,7 @@
         </ListView>
         <Menu HorizontalAlignment="Stretch"  Height="22" VerticalAlignment="Top" Padding="2">
             <MenuItem Header="File" HorizontalContentAlignment="Stretch">
-                <MenuItem Header="New Project…" Click="MenuItem_Click">
+                <MenuItem Header="New Project…" Click="mnuNewProject">
                     <MenuItem.Icon>
                         <Image Source="/img/icons/plus-16.png"/>
                     </MenuItem.Icon>

@@ -109,6 +109,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="classes\globalClass.cs" />
+    <Compile Include="classes\mainOptions.cs" />
+    <Compile Include="classes\platformType.cs" />
+    <Compile Include="classes\project.cs" />
     <Compile Include="windows\LogWindow.xaml.cs">
       <DependentUpon>LogWindow.xaml</DependentUpon>
     </Compile>

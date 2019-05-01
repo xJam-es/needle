@@ -44,7 +44,6 @@ namespace needle.classes
         public string appVersion
         {
             get { return _appVersion; }
-            set { _appVersion = value; }
         }
 
         public string appName
@@ -94,37 +93,18 @@ namespace needle.classes
         {
            return jsonToClass<mainOptions>(filePath);
         }
-    }
-
-    public class mainOptions
-    {
-        // Support
-        private globalClass _gcl = new globalClass();
-
-        // Private Variables
-        private string _fileSettings;
-        private string _folderProjects;
-        private bool _autoUpdate;
-
-        // Get/Set
-        public string folderProjects {
-            get { return _folderProjects; }
-            set {
-                if( Directory.Exists(value) ) _folderProjects = value;
-            }
-        }
-        public string fileSettings { get { return _fileSettings; } }
-        public bool autoUpdate { get { return _autoUpdate; } set { _autoUpdate = value; } }
-
-        // Constructor
-        public mainOptions()
+        public void saveProject(project _project)
         {
-            _fileSettings = _gcl.appDirectory + "\\settings.json";
-            _folderProjects = _gcl.appDirectory + "\\projects";
-            _autoUpdate = true;
+            classToJson(_project.savePath, _project);
+        }
+        public project loadProject(string filePath)
+        {
+            project tmp = jsonToClass<project>(filePath);
+            if (tmp != null) tmp.savePath = filePath;
+            return tmp;
         }
 
-    }
 
+    }
 
 }
