@@ -123,6 +123,7 @@ namespace needle.windows
         private void btnSave(object sender, RoutedEventArgs e)
         {
             save();
+            _mainWindow.loadProjectsList();
             this.Close();
         }
 

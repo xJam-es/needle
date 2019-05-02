@@ -95,12 +95,12 @@ namespace needle.classes
         }
         public void saveProject(project _project)
         {
-            classToJson(_project.savePath, _project);
+            classToJson(_project.saveFullName, _project);
         }
         public project loadProject(string filePath)
         {
             project tmp = jsonToClass<project>(filePath);
-            if (tmp != null) tmp.savePath = filePath;
+            if (tmp != null) tmp.saveFullName = filePath;
             return tmp;
         }
 

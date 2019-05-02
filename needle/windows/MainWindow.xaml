@@ -7,21 +7,44 @@
         mc:Ignorable="d"
         Title="needle" Height="350" Width="525" Closing="Window_Closing" WindowStartupLocation="CenterScreen">
     <Grid>
-        <ListView Margin="0,22,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <ListView Name="lstMain" Margin="0,22,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemsSource="{Binding projectCollection}" ContextMenuOpening="ListView_ContextMenuOpening" MouseDoubleClick="lstMain_MouseDoubleClick">
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Name="lstMainNewProject" Header="New Project…" Click="mnuNewProject">
+                        <MenuItem.Icon>
+                            <Image Source="/img/icons/plus-16.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Name="lstMainOpen" Header="Open Selected" IsEnabled="False" Click="mnuMainOpen_Click">
+                        <MenuItem.Icon>
+                            <Image Source="/img/icons/open-16.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <Separator />
+                    <MenuItem Name="lstMainRemove" Header="Remove Selected" IsEnabled="False" Click="lstMainRemove_Click">
+                        <MenuItem.Icon>
+                            <Image Source="/img/icons/waste-16.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </ContextMenu>
+            </ListView.ContextMenu>
             <ListView.View>
                 <GridView>
-                    <GridViewColumn/>
+                    <GridViewColumn Width="75" Header="ID" DisplayMemberBinding="{Binding Path=projectID}" />
+                    <GridViewColumn Width="Auto" Header="Name" DisplayMemberBinding="{Binding Path=projectName}" />
+                    <GridViewColumn Width="100" Header="Platform" DisplayMemberBinding="{Binding Path=projectPlatform.NAME}" />
+                    <GridViewColumn Header="Game" DisplayMemberBinding="{Binding Path=projectGame}" />
                 </GridView>
             </ListView.View>
         </ListView>
-        <Menu HorizontalAlignment="Stretch"  Height="22" VerticalAlignment="Top" Padding="2">
-            <MenuItem Header="File" HorizontalContentAlignment="Stretch">
+        <Menu Name="mnuMain" HorizontalAlignment="Stretch"  Height="22" VerticalAlignment="Top" Padding="2">
+            <MenuItem Header="File" HorizontalContentAlignment="Stretch" SubmenuOpened="MenuItem_SubmenuOpened" >
                 <MenuItem Header="New Project…" Click="mnuNewProject">
                     <MenuItem.Icon>
                         <Image Source="/img/icons/plus-16.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="Open Selected" IsEnabled="False" Click="MenuItem_Click">
+                <MenuItem Name="mnuMainOpen" Header="Open Selected" IsEnabled="False" Click="mnuMainOpen_Click">
                     <MenuItem.Icon>
                         <Image Source="/img/icons/open-16.png"/>
                     </MenuItem.Icon>

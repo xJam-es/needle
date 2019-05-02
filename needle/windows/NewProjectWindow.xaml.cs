@@ -26,6 +26,7 @@ namespace needle.windows
         public project _newProject;
         public platformCollection _plats = new platformCollection();
         public mainOptions _mainOptions;
+        public MainWindow _mainWindow;
 
         public NewProjectWindow()
         {
@@ -37,13 +38,19 @@ namespace needle.windows
         public void createNewProject()
         {
             _newProject = new project();
-            if(_mainOptions != null ) _newProject.savePath = string.Format("{0}\\{1}.json",_mainOptions.folderProjects,_newProject.projectID);
+            if (_mainOptions != null) _newProject.savePath = _mainOptions.folderProjects;
             pokeBindings();
         }
 
         #region Data Bindings
 
-        public project projectItem { get { return _newProject; } set { _newProject = value; NotifyPropertyChanged(); } }
+        public project projectItem {
+            get { return _newProject; }
+            set {
+                _newProject = value;
+                NotifyPropertyChanged();
+            }
+        }
         public List<platformSingle> platforms { get { return _plats.list; } }
 
         private void pokeBindings()
@@ -80,6 +87,7 @@ namespace needle.windows
         private void btnCreateClick(object sender, RoutedEventArgs e)
         {
             // save
+            _mainWindow._log.addtolog(_gcl.LOG_TYPE_SUCCESS,"Creating Project: " + _newProject.projectID);
             _gcl.saveProject(_newProject);
             this.Close();
         }
@@ -94,6 +102,21 @@ namespace needle.windows
         private void cmbPlatform_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             txtMemRegion.IsEnabled = cmbPlatform.SelectedIndex == 0;
+        }
+
+        private void txtID_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox _sender = sender as TextBox;
+            char[] arr = _sender.Text.Where(c => (char.IsLetterOrDigit(c) ||
+                             char.IsWhiteSpace(c) ||
+                             c == '-')).ToArray();
+            _sender.Text = new string(arr);
+        }
+
+        private void txtID_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (!(((e.Key >= Key.A) && (e.Key <= Key.F)) || ((e.Key >= Key.D0) && (e.Key <= Key.D9))))
+                e.Handled = true;
         }
     }
 }

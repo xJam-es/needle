@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="needle.projectUC.projectSummary"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:needle.projectUC"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="350">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="182"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <GroupBox Header="Project" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Stretch">
+            <Grid HorizontalAlignment="Stretch" Margin="0" VerticalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Content="ID" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                <Label Content="Name" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1"/>
+                <Label Content="Platform" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="2"/>
+                <Label Content="Memory Begin" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="3"/>
+                <Label Content="Game" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="4"/>
+
+                <Label Content="{Binding _project.projectID}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1"/>
+                <TextBox Grid.Column="1" HorizontalAlignment="Stretch" Margin="5" Grid.Row="1" TextWrapping="NoWrap" Text="{Binding _project.projectName}" VerticalAlignment="Stretch"/>
+                <Label Content="{Binding _project.projectPlatform.NAME}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="2" Grid.Column="1"/>
+                <Label Content="{Binding _project.projectPlatform.memRegionHex}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="3" Grid.Column="1"/>
+                <Label Content="{Binding _project.projectGame}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="4" Grid.Column="1"/>
+
+            </Grid>
+
+        </GroupBox>
+    </Grid>
+</UserControl>

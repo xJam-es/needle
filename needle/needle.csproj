@@ -112,6 +112,12 @@
     <Compile Include="classes\mainOptions.cs" />
     <Compile Include="classes\platformType.cs" />
     <Compile Include="classes\project.cs" />
+    <Compile Include="projectUC\projectRAM.xaml.cs">
+      <DependentUpon>projectRAM.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="projectUC\projectSummary.xaml.cs">
+      <DependentUpon>projectSummary.xaml</DependentUpon>
+    </Compile>
     <Compile Include="windows\LogWindow.xaml.cs">
       <DependentUpon>LogWindow.xaml</DependentUpon>
     </Compile>
@@ -121,6 +127,17 @@
     <Compile Include="windows\OptionsWindow.xaml.cs">
       <DependentUpon>OptionsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="windows\ProjectWindow.xaml.cs">
+      <DependentUpon>ProjectWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="projectUC\projectRAM.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="projectUC\projectSummary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="windows\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -142,6 +159,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="windows\OptionsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="windows\ProjectWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -217,6 +238,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="img\icons\settings-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\icons\waste-16.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

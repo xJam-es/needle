@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using System.IO;
 
 namespace needle.classes
 {
@@ -19,6 +20,7 @@ namespace needle.classes
         private platformSingle _projectPlatform;
         private string _projectGame;
         private string _appVersion;
+        private string _filename;
         
         private string _savePath;
 
@@ -74,6 +76,18 @@ namespace needle.classes
         {
             get { return _savePath; }
             set { _savePath = value; }
+        }
+        [JsonIgnore] public string saveFullName
+        {
+            get
+            {
+                if (_filename == null) return string.Format("{0}\\{1}.npr", savePath, projectID);
+                else return _filename;
+            }
+            set
+            {
+                _filename = value;
+            }
         }
        
         // Public Functions
