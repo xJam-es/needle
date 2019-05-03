@@ -212,6 +212,7 @@ namespace needle
                         return;
                     }
                 }
+                _log.addtolog(_gcl.LOG_TYPE_HIGHLIGHT,string.Format("Creating Project Window [{0}] {1}",_project.projectID,_project.projectName));
                 ProjectWindow _projectWin = new ProjectWindow();
                 _projectWin._mainWindow = this;
                 _projectWin._project = _project;

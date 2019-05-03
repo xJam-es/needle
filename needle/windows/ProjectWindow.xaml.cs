@@ -37,12 +37,13 @@ namespace needle.windows
         public void initWindow()
         {
             Title = string.Format("[{0}] {1}",_project.projectID, _project.projectName);
+            // Create
+            pc = new projectSummary(this);
+            pr = new projectRAM(this);
+            // Attach
             foreach (TabItem _tab in tabProject.Items)
             {
                 string tabText = _tab.Header.ToString();
-                // Create
-                pc = new projectSummary(this);
-                pr = new projectRAM();
                 // Attach
                 if (tabText == "Summary") _tab.Content = pc;
                 if (tabText == "RAM Files") _tab.Content = pr;
@@ -52,11 +53,14 @@ namespace needle.windows
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             _mainWindow._projectWindows.Remove(this);
+            _mainWindow._log.addtolog(_gcl.LOG_TYPE_NORMAL, string.Format("Closing Project Window [{0}].", _project.projectID));
         }
 
         private void mnuProjectSave_Click(object sender, RoutedEventArgs e)
         {
+            _project.ramFiles = new List<ramFile>(pr.ramFiles);
             _gcl.saveProject(_project);
+            _mainWindow._log.addtolog(_gcl.LOG_TYPE_SUCCESS, string.Format("Project [{0}] saved.", _project.projectID));
         }
     }
 }

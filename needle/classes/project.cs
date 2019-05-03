@@ -21,6 +21,7 @@ namespace needle.classes
         private string _projectGame;
         private string _appVersion;
         private string _filename;
+        private List<ramFile> _ramFiles = new List<ramFile>();
         
         private string _savePath;
 
@@ -59,6 +60,11 @@ namespace needle.classes
         {
             get { return _projectPlatform.ID; }
             set { _projectPlatform = _pla.findById(value); }
+        }
+        public List<ramFile> ramFiles
+        {
+            get { return _ramFiles; }
+            set { _ramFiles = value; }
         }
 
         // Non Serialised Public Data

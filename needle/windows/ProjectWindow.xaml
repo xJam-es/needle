@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:needle.windows"
         mc:Ignorable="d"
-        Title="ProjectWindow" Height="500" Width="400" Closing="Window_Closing" WindowStartupLocation="CenterScreen">
+        Title="ProjectWindow" Height="400" Width="500" Closing="Window_Closing" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="24"/>

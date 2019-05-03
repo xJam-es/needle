@@ -112,6 +112,7 @@
     <Compile Include="classes\mainOptions.cs" />
     <Compile Include="classes\platformType.cs" />
     <Compile Include="classes\project.cs" />
+    <Compile Include="classes\ramFile.cs" />
     <Compile Include="projectUC\projectRAM.xaml.cs">
       <DependentUpon>projectRAM.xaml</DependentUpon>
     </Compile>

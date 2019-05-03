@@ -7,6 +7,21 @@
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="350">
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Button Name="btnAddRAM" Content="Add File…" HorizontalAlignment="Left" Margin="5" VerticalAlignment="Stretch" Padding="10,0" Cursor="Hand" Click="btnAddRAM_Click"/>
+        <ListView HorizontalAlignment="Stretch" Margin="5" Grid.Row="1" VerticalAlignment="Stretch" ItemsSource="{Binding ramFiles}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="File Name" DisplayMemberBinding="{Binding Path=fileNameShort}" />
+                    <GridViewColumn Header="From" DisplayMemberBinding="{Binding Path=addressStartHex}" />
+                    <GridViewColumn Header="To" DisplayMemberBinding="{Binding Path=addressEndHex}" />
+                    <GridViewColumn Header="Size" DisplayMemberBinding="{Binding Path=fileSizeString}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
     </Grid>
 </UserControl>
